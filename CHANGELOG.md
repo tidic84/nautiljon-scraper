@@ -51,3 +51,44 @@ Le scraper fonctionne maintenant parfaitement avec nautiljon.com malgré les pro
 1. **Utilisation** : Toujours appeler `closeBrowser()` à la fin
 2. **Performance** : Réutiliser la même instance pour plusieurs requêtes
 3. **Monitoring** : Surveiller les changements du site nautiljon.com 
+
+## [2.0.1] - 2024-12-19
+
+### Fixed
+- **Correction majeure** : La liste des épisodes était toujours vide
+- **Amélioration du parsing** : Meilleure séparation des titres anglais et français
+- **Sélecteurs CSS** : Correction des sélecteurs pour récupérer les épisodes depuis les tableaux HTML
+- **Nettoyage des données** : Suppression des annotations comme "[Semi filler]" des titres
+
+### Technical Details
+- Remplacement du sélecteur `.vtop.aleft` défaillant par une recherche intelligente de tableaux
+- Détection automatique du tableau d'épisodes (3 colonnes : numéro, titre, date)
+- Parsing amélioré des titres avec séparation correcte anglais/français
+- Récupération complète de tous les épisodes disponibles (1136 pour One Piece, 28 pour Frieren)
+
+## [2.0.0] - 2024-12-19
+
+### Added
+- **Contournement Cloudflare** : Utilisation de Puppeteer pour simuler un navigateur réel
+- **Récupération des plateformes VOD** : Détection intelligente des plateformes de streaming (ADN, Crunchyroll, Netflix, Amazon Prime Video)
+- **Système de fallback** : Méthodes alternatives pour récupérer les informations manquantes
+
+### Changed
+- **Dépendances modernisées** : Remplacement de `request-promise` (déprécié) par `axios` et `puppeteer`
+- **Mise à jour de Cheerio** : Version récente pour une meilleure compatibilité
+- **Système de requêtes** : Réécriture complète avec simulation de navigateur
+
+### Fixed
+- **Erreurs 403** : Contournement des protections anti-bot de Cloudflare
+- **Sélecteurs CSS** : Mise à jour pour la structure HTML actuelle de nautiljon.com
+- **Champ Format** : Ajout d'une valeur par défaut "Série TV" quand le champ n'existe plus
+- **Plateformes VOD** : Récupération fonctionnelle des plateformes de streaming
+
+### Technical Details
+- Puppeteer configuré avec options anti-détection
+- Headers HTTP authentiques pour simuler un navigateur réel
+- Système de cache de navigateur pour optimiser les performances
+- Gestion propre de la fermeture du navigateur après utilisation
+
+## [1.0.0] - 2022
+- Version initiale du scraper Nautiljon 
